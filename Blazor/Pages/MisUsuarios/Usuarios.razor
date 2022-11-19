@@ -1,0 +1,43 @@
+﻿@page "/Usuarios"
+@using Modelos;
+
+<AuthorizeView Roles="Administrador">
+    <Authorized Context="AuthenticationState">
+
+        <h2>Lista de Usuarios</h2>
+
+        @if(lista == null)
+        {
+            <p>No existen usuarios en el sistema</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th>EstaActivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(Usuario user in lista)
+                    {
+                        <tr>
+                            <td>@user.Codigo</td>
+                            <td>@user.Nombre</td>
+                            <td>@user.Correo</td>
+                            <td>@user.Rol</td>
+                            <td>@user.EstaActivo</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </Authorized>
+
+
+</AuthorizeView>
